@@ -1,0 +1,13 @@
+# currency_converter.py
+
+import requests
+
+def convert_currency(amount, from_currency, to_currency):
+    url = f"https://api.exchangerate-api.com/v4/latest/{from_currency}"
+    response = requests.get(url)
+    rates = response.json()["rates"]
+    converted_amount = amount * rates[to_currency]
+    return converted_amount
+
+# Sample usage
+print(f"10 USD to EUR: {convert_currency(10, 'USD', 'EUR'):.2f}")
